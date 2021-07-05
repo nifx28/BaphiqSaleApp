@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws.baphiq.jo.hyweb/" targetNamespace="http://ws.baphiq.jo.hyweb/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DisposalRecord" type="tns:DisposalRecord" />
+  <xs:element name="DisposalRecordResponse" type="tns:DisposalRecordResponse" />
+  <xs:element name="Exception" type="tns:Exception" />
+  <xs:element name="SellPersonUpload" type="tns:SellPersonUpload" />
+  <xs:element name="SellPersonUploadResponse" type="tns:SellPersonUploadResponse" />
+  <xs:element name="SellStoreUpload" type="tns:SellStoreUpload" />
+  <xs:element name="SellStoreUploadResponse" type="tns:SellStoreUploadResponse" />
+  <xs:element name="qryPesticideUseRange" type="tns:qryPesticideUseRange" />
+  <xs:element name="qryPesticideUseRangeResponse" type="tns:qryPesticideUseRangeResponse" />
+  <xs:element name="salesDataDownload" type="tns:salesDataDownload" />
+  <xs:element name="salesDataDownloadResponse" type="tns:salesDataDownloadResponse" />
+  <xs:complexType name="DisposalRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="loginId" type="xs:string" />
+      <xs:element minOccurs="0" name="inputXML" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DisposalRecordResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SellPersonUpload">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="loginId" type="xs:string" />
+      <xs:element minOccurs="0" name="inputXML" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SellPersonUploadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="qryPesticideUseRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="trustId" type="xs:string" />
+      <xs:element minOccurs="0" name="barcode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="qryPesticideUseRangeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SellStoreUpload">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="loginId" type="xs:string" />
+      <xs:element minOccurs="0" name="inputXML" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SellStoreUploadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="salesDataDownload">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="trustId" type="xs:string" />
+      <xs:element minOccurs="0" name="requestStartDate" type="xs:string" />
+      <xs:element minOccurs="0" name="requestEndDate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="salesDataDownloadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

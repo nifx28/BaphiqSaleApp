@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://ws.baphiq.jo.hyweb/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="BaphiqSale" targetNamespace="http://ws.baphiq.jo.hyweb/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://crop.baphiq.gov.tw:443/mPosService/BaphiqSale?xsd=1" namespace="http://ws.baphiq.jo.hyweb/" />
+    </xsd:schema>
+  </types>
+  <message name="qryPesticideUseRange">
+    <part name="parameters" element="tns:qryPesticideUseRange" />
+  </message>
+  <message name="qryPesticideUseRangeResponse">
+    <part name="parameters" element="tns:qryPesticideUseRangeResponse" />
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="salesDataDownload">
+    <part name="parameters" element="tns:salesDataDownload" />
+  </message>
+  <message name="salesDataDownloadResponse">
+    <part name="parameters" element="tns:salesDataDownloadResponse" />
+  </message>
+  <message name="DisposalRecord">
+    <part name="parameters" element="tns:DisposalRecord" />
+  </message>
+  <message name="DisposalRecordResponse">
+    <part name="parameters" element="tns:DisposalRecordResponse" />
+  </message>
+  <message name="SellPersonUpload">
+    <part name="parameters" element="tns:SellPersonUpload" />
+  </message>
+  <message name="SellPersonUploadResponse">
+    <part name="parameters" element="tns:SellPersonUploadResponse" />
+  </message>
+  <message name="SellStoreUpload">
+    <part name="parameters" element="tns:SellStoreUpload" />
+  </message>
+  <message name="SellStoreUploadResponse">
+    <part name="parameters" element="tns:SellStoreUploadResponse" />
+  </message>
+  <portType name="BaphiqSale">
+    <operation name="qryPesticideUseRange">
+      <input wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/qryPesticideUseRangeRequest" message="tns:qryPesticideUseRange" />
+      <output wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/qryPesticideUseRangeResponse" message="tns:qryPesticideUseRangeResponse" />
+      <fault wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/qryPesticideUseRange/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="salesDataDownload">
+      <input wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/salesDataDownloadRequest" message="tns:salesDataDownload" />
+      <output wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/salesDataDownloadResponse" message="tns:salesDataDownloadResponse" />
+    </operation>
+    <operation name="DisposalRecord">
+      <input wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/DisposalRecordRequest" message="tns:DisposalRecord" />
+      <output wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/DisposalRecordResponse" message="tns:DisposalRecordResponse" />
+      <fault wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/DisposalRecord/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="SellPersonUpload">
+      <input wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/SellPersonUploadRequest" message="tns:SellPersonUpload" />
+      <output wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/SellPersonUploadResponse" message="tns:SellPersonUploadResponse" />
+      <fault wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/SellPersonUpload/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="SellStoreUpload">
+      <input wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/SellStoreUploadRequest" message="tns:SellStoreUpload" />
+      <output wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/SellStoreUploadResponse" message="tns:SellStoreUploadResponse" />
+      <fault wsam:Action="http://ws.baphiq.jo.hyweb/BaphiqSale/SellStoreUpload/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+  </portType>
+  <binding name="BaphiqSalePortBinding" type="tns:BaphiqSale">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="qryPesticideUseRange">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="salesDataDownload">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DisposalRecord">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="SellPersonUpload">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="SellStoreUpload">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="BaphiqSale">
+    <port name="BaphiqSalePort" binding="tns:BaphiqSalePortBinding">
+      <soap:address location="https://crop.baphiq.gov.tw:443/mPosService/BaphiqSale" />
+    </port>
+  </service>
+</definitions>
