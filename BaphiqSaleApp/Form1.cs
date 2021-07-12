@@ -16,11 +16,48 @@ namespace BaphiqSaleApp
 {
     public partial class Form1 : Form
     {
+        private readonly string Title;
+
+        private SellStore<RecordOut> store;
+
         public Form1()
         {
             InitializeComponent();
+            Title = Text;
 
             ActiveControl = textBox1;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            store = new SellStore<RecordOut>
+            {
+                Sid = "文件識別碼",
+                Company = new Company
+                {
+                    LoginId = "登入帳號",
+                    StoreName = "商業名稱",
+                    DutName = "負責人姓名",
+                    TrustID = "交易信任碼"
+                },
+                UploadRecord = new UploadRecord<RecordOut>
+                {
+                    RTotal = 1,
+                    Records = new List<RecordOut>
+                    {
+                        new RecordOut
+                        {
+                            RecordID = 1,
+                            //UserID = "購買人身分證字號",
+                            //UserName = "購買人姓名",
+                            SellDate = null,
+                            BarCode = "農藥EAN13條碼",
+                            Quantity = 100,
+                            //Note = "備註"
+                        }
+                    }
+                }
+            };
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -37,34 +74,9 @@ namespace BaphiqSaleApp
             culture.DateTimeFormat.Calendar = new TaiwanCalendar();
             var sellDate = now.ToString("yyy/MM/dd", culture);
 
-            var model = new SellStore<RecordOut>
-            {
-                Sid = "文件識別碼",
-                Company = new Company
-                {
-                    LoginId = "登入帳號",
-                    StoreName = "商業名稱",
-                    DutName = "負責人姓名",
-                    TrustID = "交易信任碼"
-                },
-                UploadRecord = new UploadRecord<RecordOut>
-                {
-                    RTotal = 1,
-                    Records = new List<RecordOut>
-                        {
-                            new RecordOut
-                            {
-                                RecordID = 1,
-                                UserID = "購買人身分證字號",
-                                UserName = "購買人姓名",
-                                SellDate = sellDate,
-                                BarCode = "農藥EAN13條碼",
-                                Quantity = 100,
-                                Note = "備註"
-                            }
-                        }
-                }
-            };
+            Text = $"{Title} - {sellDate}";
+
+            store.UploadRecord.Records[0].SellDate = sellDate;
 
             var modelXml = string.Empty;
 
@@ -76,7 +88,7 @@ namespace BaphiqSaleApp
             {
                 var mySerializer = new XmlSerializer(typeof(SellStore<RecordOut>));
 
-                mySerializer.Serialize(writer, model, new XmlSerializerNamespaces(new XmlQualifiedName[]
+                mySerializer.Serialize(writer, store, new XmlSerializerNamespaces(new XmlQualifiedName[]
                 {
                     new XmlQualifiedName(string.Empty, string.Empty)
                 }));
@@ -85,17 +97,6 @@ namespace BaphiqSaleApp
             }
 
             textBox1.Text = modelXml;
-            /*SellStore<RecordIn> modelObj = null;
-
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(modelXml)))
-            using (var reader = XmlReader.Create(ms))
-            {
-                var mySerializer = new XmlSerializer(typeof(SellStore<RecordIn>));
-                modelObj = mySerializer.Deserialize(reader) as SellStore<RecordIn>;
-            }
-
-            MessageBox.Show(JsonConvert.SerializeObject(modelObj, Formatting.Indented));
-            return;*/
 
             var responseXml = string.Empty;
 
@@ -115,6 +116,49 @@ namespace BaphiqSaleApp
 
             MessageBox.Show(responseXml + Environment.NewLine +
                 JsonConvert.SerializeObject(response, Formatting.Indented));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DateTimeOffset now = DateTimeOffset.Now;
+            var culture = new CultureInfo("zh-TW");
+            culture.DateTimeFormat.Calendar = new TaiwanCalendar();
+            var sellDate = now.ToString("yyy/MM/dd", culture);
+
+            Text = $"{Title} - {sellDate}";
+
+            store.UploadRecord.Records[0].SellDate = sellDate;
+
+            var modelXml = string.Empty;
+
+            using (var ms = new MemoryStream())
+            using (var writer = XmlWriter.Create(ms, new XmlWriterSettings
+            {
+                Indent = true
+            }))
+            {
+                var mySerializer = new XmlSerializer(typeof(SellStore<RecordOut>));
+
+                mySerializer.Serialize(writer, store, new XmlSerializerNamespaces(new XmlQualifiedName[]
+                {
+                    new XmlQualifiedName(string.Empty, string.Empty)
+                }));
+
+                modelXml = Encoding.UTF8.GetString(ms.ToArray());
+            }
+
+            textBox1.Text = modelXml;
+
+            SellStore<RecordIn> modelObj = null;
+
+            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(modelXml)))
+            using (var reader = XmlReader.Create(ms))
+            {
+                var mySerializer = new XmlSerializer(typeof(SellStore<RecordIn>));
+                modelObj = mySerializer.Deserialize(reader) as SellStore<RecordIn>;
+            }
+
+            MessageBox.Show(JsonConvert.SerializeObject(modelObj, Formatting.Indented));
         }
     }
 }

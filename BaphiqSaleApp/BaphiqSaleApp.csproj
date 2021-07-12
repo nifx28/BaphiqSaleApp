@@ -57,6 +57,7 @@
     <Compile Include="Models\RecordIn.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\RecordOut.cs" />
+    <Compile Include="Models\EmptyDto.cs" />
     <Compile Include="Models\StringDto.cs" />
     <Compile Include="Models\UploadRecord.cs" />
     <Compile Include="Connected Services\BaphiqSale\Reference.cs">

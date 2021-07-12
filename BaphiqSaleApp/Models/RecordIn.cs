@@ -15,10 +15,12 @@ namespace BaphiqSaleApp.Models
         public int RecordID { get; set; }
 
         [MaxLength(20)]
-        public string UserID { get; set; }
+        //[XmlElement(IsNullable = true)]
+        public string UserID { get; set; } = "null";
 
         [MaxLength(32)]
-        public string UserName { get; set; }
+        //[XmlElement(IsNullable = true)]
+        public string UserName { get; set; } = "null";
 
         [Required]
         [MaxLength(9)]
@@ -33,6 +35,7 @@ namespace BaphiqSaleApp.Models
         public int Quantity { get; set; }
 
         [MaxLength(500)]
-        public string Note { get; set; }
+        //[XmlElement(IsNullable = true)]
+        public string Note { get; set; } = "null";
     }
 }

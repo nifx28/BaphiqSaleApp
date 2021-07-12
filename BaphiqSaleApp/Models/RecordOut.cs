@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
@@ -15,10 +16,12 @@ namespace BaphiqSaleApp.Models
         public int RecordID { get; set; }
 
         [MaxLength(20)]
-        public string UserID { get; set; }
+        //[XmlElement(IsNullable = true)]
+        public EmptyDto<string> UserID { get; set; } = new EmptyDto<string>("null");
 
         [MaxLength(32)]
-        public string UserName { get; set; }
+        //[XmlElement(IsNullable = true)]
+        public EmptyDto<string> UserName { get; set; } = new EmptyDto<string>("null");
 
         [Required]
         [MaxLength(9)]
@@ -39,6 +42,8 @@ namespace BaphiqSaleApp.Models
         public StringDto<int> Quantity { get; set; }
 
         [MaxLength(500)]
-        public string Note { get; set; }
+        //[XmlElement(IsNullable = true)]
+        [XmlElement(Type = typeof(string))]
+        public EmptyDto<string> Note { get; set; } = new EmptyDto<string>("null");
     }
 }
