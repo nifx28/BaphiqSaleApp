@@ -16,11 +16,11 @@ namespace BaphiqSaleApp.Models
 
         [MaxLength(20)]
         //[XmlElement(IsNullable = true)]
-        public string UserID { get; set; } = "null";
+        public EmptyDto<string> UserID { get; set; } = new EmptyDto<string>("null");
 
         [MaxLength(32)]
         //[XmlElement(IsNullable = true)]
-        public string UserName { get; set; } = "null";
+        public EmptyDto<string> UserName { get; set; } = new EmptyDto<string>("null");
 
         [Required]
         [MaxLength(9)]
@@ -36,6 +36,7 @@ namespace BaphiqSaleApp.Models
 
         [MaxLength(500)]
         //[XmlElement(IsNullable = true)]
-        public string Note { get; set; } = "null";
+        [XmlElement(Type = typeof(string))]
+        public EmptyDto<string> Note { get; set; } = new EmptyDto<string>("null");
     }
 }

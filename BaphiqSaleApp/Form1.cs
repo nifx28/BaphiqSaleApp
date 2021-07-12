@@ -158,7 +158,11 @@ namespace BaphiqSaleApp
                 modelObj = mySerializer.Deserialize(reader) as SellStore<RecordIn>;
             }
 
-            MessageBox.Show(JsonConvert.SerializeObject(modelObj, Formatting.Indented));
+            MessageBox.Show(JsonConvert.SerializeObject(modelObj, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented
+            }));
         }
     }
 }

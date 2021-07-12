@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace BaphiqSaleApp.Models
 {
@@ -24,7 +23,16 @@ namespace BaphiqSaleApp.Models
         /// <param name="value"></param>
         public EmptyDto(T value)
         {
-            _value = value;
+            switch (Type.GetTypeCode(typeof(T)))
+            {
+                case TypeCode.String:
+                    var str = Convert.ChangeType(value, typeof(string)) as string;
+                    _value = (T)Convert.ChangeType(str == "null" ? string.Empty : str, typeof(T));
+                    break;
+                default:
+                    _value = value;
+                    break;
+            }
         }
 
         /// <summary>
