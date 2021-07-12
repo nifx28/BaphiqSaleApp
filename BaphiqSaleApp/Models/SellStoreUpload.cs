@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-namespace BaphiqSaleApp
+namespace BaphiqSaleApp.Models
 {
     [Serializable]
     [XmlType(TypeName = "SellStoreUpload")]
-    public class SellStore
+    public class SellStore<T>
     {
         [Required]
         [MaxLength(20)]
@@ -18,6 +17,6 @@ namespace BaphiqSaleApp
         public Company Company { get; set; }
 
         [Required]
-        public UploadRecord UploadRecord { get; set; }
+        public UploadRecord<T> UploadRecord { get; set; }
     }
 }

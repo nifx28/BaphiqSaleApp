@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-namespace BaphiqSaleApp
+namespace BaphiqSaleApp.Models
 {
     /// <summary>
     /// 業者資訊

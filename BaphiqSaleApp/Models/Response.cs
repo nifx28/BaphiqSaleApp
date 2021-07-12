@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-namespace BaphiqSaleApp
+namespace BaphiqSaleApp.Models
 {
     /// <summary>
     /// 交易回覆
@@ -27,7 +27,7 @@ namespace BaphiqSaleApp
         public string Rid { get; set; }
 
         [Required]
-        //[MaxLength(1)]
+        [MaxLength(1)]
         public bool Status { get; set; }
 
         [MaxLength(100)]

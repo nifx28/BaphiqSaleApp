@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-namespace BaphiqSaleApp
+namespace BaphiqSaleApp.Models
 {
     /// <summary>
     /// 詳細銷售紀錄
     /// </summary>
     [Serializable]
-    public class UploadRecord
+    [XmlType(TypeName = "UploadRecord")]
+    public class UploadRecord<T>
     {
         /// <summary>
         /// 共有幾筆銷售紀錄
@@ -19,6 +20,6 @@ namespace BaphiqSaleApp
 
         [Required]
         [XmlElement("Record")]
-        public List<Record> Records { get; set; }
+        public List<T> Records { get; set; }
     }
 }

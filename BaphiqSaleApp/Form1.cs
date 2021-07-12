@@ -1,4 +1,5 @@
 ﻿using BaphiqSaleApp.BaphiqSale;
+using BaphiqSaleApp.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace BaphiqSaleApp
             culture.DateTimeFormat.Calendar = new TaiwanCalendar();
             var sellDate = now.ToString("yyy/MM/dd", culture);
 
-            var model = new SellStore
+            var model = new SellStore<RecordOut>
             {
                 Sid = "文件識別碼",
                 Company = new Company
@@ -46,12 +47,12 @@ namespace BaphiqSaleApp
                     DutName = "負責人姓名",
                     TrustID = "交易信任碼"
                 },
-                UploadRecord = new UploadRecord
+                UploadRecord = new UploadRecord<RecordOut>
                 {
                     RTotal = 1,
-                    Records = new List<Record>
+                    Records = new List<RecordOut>
                         {
-                            new Record
+                            new RecordOut
                             {
                                 RecordID = 1,
                                 UserID = "購買人身分證字號",
@@ -73,17 +74,28 @@ namespace BaphiqSaleApp
                 Indent = true
             }))
             {
-                var mySerializer = new XmlSerializer(typeof(SellStore));
+                var mySerializer = new XmlSerializer(typeof(SellStore<RecordOut>));
 
                 mySerializer.Serialize(writer, model, new XmlSerializerNamespaces(new XmlQualifiedName[]
                 {
-                        new XmlQualifiedName(string.Empty, string.Empty)
+                    new XmlQualifiedName(string.Empty, string.Empty)
                 }));
 
                 modelXml = Encoding.UTF8.GetString(ms.ToArray());
             }
 
             textBox1.Text = modelXml;
+            /*SellStore<RecordIn> modelObj = null;
+
+            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(modelXml)))
+            using (var reader = XmlReader.Create(ms))
+            {
+                var mySerializer = new XmlSerializer(typeof(SellStore<RecordIn>));
+                modelObj = mySerializer.Deserialize(reader) as SellStore<RecordIn>;
+            }
+
+            MessageBox.Show(JsonConvert.SerializeObject(modelObj, Formatting.Indented));
+            return;*/
 
             var responseXml = string.Empty;
 
